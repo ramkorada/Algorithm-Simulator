@@ -20,11 +20,11 @@ A professional educational platform for simulating and visualizing classic algor
 
 ## Implemented Modules
 
-- ✅ Coin Change (Greedy vs Dynamic Programming)
-- ✅ 0/1 Knapsack (Dynamic Programming)
-- ✅ Fractional Knapsack (Greedy)
-- ✅ Activity Selection (Greedy)
-- ✅ Rod Cutting (Dynamic Programming)
+-  Coin Change (Greedy vs Dynamic Programming)
+-  0/1 Knapsack (Dynamic Programming)
+-  Fractional Knapsack (Greedy)
+-  Activity Selection (Greedy)
+-  Rod Cutting (Dynamic Programming)
 
 ---
 
