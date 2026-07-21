@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Algorithm Simulator — Interactive execution visualizer for Greedy and Dynamic Programming algorithms." />
+  <title>Algorithm Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <!-- ================================================================
+       HEADER — Brand + Module Selector
+       ================================================================ -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-name">Algorithm Simulator</span>
+    </div>
+
+    <nav class="module-nav" aria-label="Algorithm modules">
+      <span class="module-nav__label">Module:</span>
+
+      <button class="module-btn module-btn--active" data-module="coin_change" aria-pressed="true" aria-label="Coin Change">
+        <span class="module-btn__check">✓</span>
+        Coin Change
+      </button>
+
+      <button class="module-btn" data-module="zero_one_knapsack" aria-label="0/1 Knapsack">
+        0/1 Knapsack
+      </button>
+
+      <button class="module-btn" data-module="fractional_knapsack" aria-label="Fractional Knapsack">
+        Fractional Knapsack
+      </button>
+
+      <button class="module-btn" data-module="activity_selection" aria-label="Activity Selection">
+        Activity Selection
+      </button>
+
+      <button class="module-btn" data-module="rod_cutting" aria-label="Rod Cutting">
+        Rod Cutting
+      </button>
+    </nav>
+  </header>
+
+
+  <!-- ================================================================
+       APP BODY — Fixed sidebar + scrollable main content
+       ================================================================ -->
+  <div class="app-body">
+
+    <!-- INPUT SIDEBAR -->
+    <aside class="sidebar" aria-label="Problem configuration">
+      <div class="sidebar-inner" id="sidebar-inner">
+        <!-- Populated dynamically by module.js -->
+      </div><!-- /.sidebar-inner -->
+    </aside><!-- /.sidebar -->
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+
+      <!-- STATE: Empty (default) -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-state__icon" aria-hidden="true">⚙</div>
+        <h1 class="empty-state__title" id="empty-state-title">Algorithm Simulator</h1>
+        <p class="empty-state__subtitle" id="empty-state-subtitle">
+          Configure a problem on the left and run analysis to visualize how each algorithm makes decisions step-by-step.
+        </p>
+        <div class="empty-state__cta">
+          <span class="empty-state__cta-label">Start with a preset:</span>
+          <div class="empty-state__buttons" id="empty-state-presets">
+            <!-- Populated dynamically by module.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- STATE: Results (hidden until analysis is run) -->
+      <div id="results-view" class="results-view" hidden aria-live="polite">
+
+        <!-- ─── ANALYSIS HEADER ─── -->
+        <div class="analysis-header">
+          <div class="analysis-header__left">
+            <h2 class="analysis-header__title">Algorithm Analysis</h2>
+            <p id="result-meta" class="analysis-header__meta"></p>
+          </div>
+          <!-- Final result summary badges -->
+          <div class="result-summary" id="result-summary"></div>
+        </div>
+
+        <!-- ─── EXECUTION TRACES (side by side) ─── -->
+        <div class="execution-section">
+
+          <!-- Greedy execution panel -->
+          <div class="exec-panel exec-panel--greedy">
+            <div class="exec-panel__header">
+              <div class="exec-panel__title-group">
+                <span class="algo-badge algo-badge--greedy">Greedy</span>
+                <span class="exec-panel__title">Execution Trace</span>
+              </div>
+              <span id="greedy-result-badge" class="result-badge"></span>
+            </div>
+            <div id="greedy-execution" class="exec-flow" aria-label="Greedy algorithm execution steps"></div>
+          </div>
+
+          <!-- DP execution panel -->
+          <div class="exec-panel exec-panel--dp">
+            <div class="exec-panel__header">
+              <div class="exec-panel__title-group">
+                <span class="algo-badge algo-badge--dp">DP</span>
+                <span class="exec-panel__title">Reconstruction</span>
+              </div>
+              <span id="dp-result-badge" class="result-badge"></span>
+            </div>
+            <div id="dp-execution" class="exec-flow" aria-label="Dynamic Programming reconstruction steps"></div>
+          </div>
+
+        </div><!-- /.execution-section -->
+
+
+        <!-- ─── COMPARISON CARDS ─── -->
+        <div class="section-block">
+          <div class="section-block__label">Comparison</div>
+          <div id="comparison-cards" class="comparison-grid"></div>
+        </div>
+
+
+        <!-- ─── INSIGHTS ─── -->
+        <div class="section-block">
+          <div class="section-block__label">Insights</div>
+          <div id="insights-grid" class="insights-grid"></div>
+        </div>
+
+
+        <!-- ─── COMPLEXITY (collapsed) ─── -->
+        <details class="complexity-details" id="complexity-details">
+          <summary class="complexity-details__summary">
+            <span class="complexity-details__label">Complexity Analysis</span>
+            <span class="complexity-details__hint">Click to expand</span>
+            <span class="complexity-details__arrow" aria-hidden="true">▾</span>
+          </summary>
+          <div id="complexity-content" class="complexity-content"></div>
+        </details>
+
+      </div><!-- /#results-view -->
+
+    </main><!-- /.main-content -->
+
+  </div><!-- /.app-body -->
+
+  <script type="module" src="/static/js/module.js"></script>
+  <script type="module" src="/static/js/main.js"></script>
+</body>
+</html>
