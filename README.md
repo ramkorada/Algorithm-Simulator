@@ -1,28 +1,30 @@
-# Algorithm Simulator
+# Algorithm Simulator – Interactive Algorithm Visualization Platform
 
-A professional educational platform for simulating and comparing algorithmic approaches to classic problems. 
+A professional educational platform for simulating and visualizing classic algorithms through interactive execution tracing, performance benchmarking, and complexity analysis.
 
-**Tech Stack:** Python 3 · Flask · HTML5 · CSS3 · Vanilla JavaScript (ES6 modules)
+**Tech Stack:** Python 3 · Flask · HTML5 · CSS3 · Vanilla JavaScript (ES6 Modules)
 
 ---
 
 ## Features
 
-- **Side-by-side Algorithm Comparison**: Evaluate different algorithmic approaches (e.g., Greedy vs Dynamic Programming) to solve the same problem.
-- **Execution Tracing**: Step-by-step visualizations of algorithm execution flows.
-- **Performance Benchmarking**: Real-time measurement of execution wall-clock time.
-- **Complexity Analysis**: Big-O time and space complexity breakdowns for each algorithm.
-- **Interactive UI**: Clean, responsive, and dynamic user interface.
+- **Interactive Algorithm Visualization** with step-by-step execution tracing.
+- **Algorithm Comparison** for problems supporting multiple approaches (e.g., Greedy vs Dynamic Programming).
+- **Performance Benchmarking** using real-time execution time measurements.
+- **Complexity Analysis** with Big-O time and space complexity explanations.
+- **Dynamic Programming Table Visualization** and solution reconstruction.
+- **Greedy Decision Visualization** with execution timelines.
+- **Responsive Single-Page Interface** built using HTML5, CSS3, and Vanilla JavaScript.
 
 ---
 
-## Planned Modules
+## Implemented Modules
 
-- **Coin Change** (Implemented)
-- **0/1 Knapsack** (Planned)
-- **Fractional Knapsack** (Planned)
-- **Activity Selection** (Planned)
-- **Rod Cutting** (Planned)
+- ✅ Coin Change (Greedy vs Dynamic Programming)
+- ✅ 0/1 Knapsack (Dynamic Programming)
+- ✅ Fractional Knapsack (Greedy)
+- ✅ Activity Selection (Greedy)
+- ✅ Rod Cutting (Dynamic Programming)
 
 ---
 
@@ -30,127 +32,205 @@ A professional educational platform for simulating and comparing algorithmic app
 
 The project follows a strict separation of concerns, designed for scalability and ease of extension.
 
-```
+```text
 algorithm-simulator/
 │
-├── algorithms/                 # Pure algorithms (no Flask/HTTP/Timing logic)
+├── algorithms/                 # Pure algorithm implementations
 │   ├── __init__.py
 │   ├── coin_change.py
-│   ├── zero_one_knapsack.py    # Placeholder
-│   ├── fractional_knapsack.py  # Placeholder
-│   ├── activity_selection.py   # Placeholder
-│   └── rod_cutting.py          # Placeholder
+│   ├── zero_one_knapsack.py
+│   ├── fractional_knapsack.py
+│   ├── activity_selection.py
+│   └── rod_cutting.py
 │
-├── routes/                     # Flask REST APIs (Routing and request receiving only)
+├── routes/                     # Flask REST API endpoints
 │   ├── __init__.py
 │   └── api.py
 │
-├── services/                   # Orchestration (Validates, times, compares, formats)
+├── services/                   # Business logic & orchestration
 │   ├── __init__.py
-│   ├── coin_change_service.py     # Coin Change Orchestrator
-│   ├── zero_one_knapsack_service.py    # Placeholder
-│   ├── fractional_knapsack_service.py  # Placeholder
-│   ├── activity_selection_service.py   # Placeholder
-│   └── rod_cutting_service.py          # Placeholder
+│   ├── coin_change_service.py
+│   ├── zero_one_knapsack_service.py
+│   ├── fractional_knapsack_service.py
+│   ├── activity_selection_service.py
+│   └── rod_cutting_service.py
 │
-├── utils/                      # Reusable utilities (No business logic)
+├── utils/                      # Shared utilities
 │   ├── __init__.py
-│   ├── validators.py           # Input validation rules
-│   ├── timer.py                # Execution timing wrapper
-│   ├── constants.py            # Global constants & messages
-│   └── complexity.py           # Big-O complexity metadata
+│   ├── validators.py
+│   ├── timer.py
+│   ├── constants.py
+│   └── complexity.py
 │
-├── static/                     # Frontend Assets
+├── static/
 │   ├── css/
 │   │   └── style.css
 │   └── js/
-│       ├── api.js              # Fetch requests & HTTP calls
-│       ├── main.js             # Entry point & event listeners
-│       ├── render.js           # Reusable DOM rendering functions
-│       ├── ui.js               # UI state management & animations
-│       └── validation.js       # Client-side input validation
+│       ├── api.js
+│       ├── main.js
+│       ├── render.js
+│       ├── ui.js
+│       └── validation.js
 │
 ├── templates/
-│   └── index.html              # Main SPA template
+│   └── index.html
 │
-├── app.py                      # Flask App factory & configuration
-├── requirements.txt            # Python dependencies
-└── .gitignore                  # Git exclusions
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-## Getting Started
+# Getting Started
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.10 or later
 - pip
 
-### Installation
+---
+
+## Installation
+
+Clone the repository and move into the project directory.
 
 ```bash
-# 1. Clone or download the project
+git clone <repository-url>
 cd algorithm-simulator
-
-# 2. Create and activate a virtual environment
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-# macOS / Linux
-source venv/bin/activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Start the development server
-python app.py
 ```
 
+Create a virtual environment.
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment.
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### macOS / Linux
+
+```bash
+source venv/bin/activate
+```
+
+Install the required dependencies.
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
 ## API Documentation
 
-### `POST /api/v1/coin-change`
+### POST `/api/v1/coin-change`
 
-Analyze the Coin Change problem using both algorithms.
+Analyzes the Coin Change problem using both Greedy and Dynamic Programming approaches.
 
-**Request**
+### Request
+
 ```json
 {
-  "coins":  [1, 5, 6, 9],
-  "amount": 11
+  "coins": [1,5,6,9],
+  "amount":11
 }
 ```
 
-**Success Response (200)**
+### Success Response (200)
+
 ```json
 {
   "greedy": {
-    "coins":             [9, 1, 1],
-    "count":             3,
-    "solvable":          true,
-    "execution_time_ms": 0.0043,
-    "steps":             ["Selected coin 9 — remaining amount: 2", "..."]
+    "coins":[9,1,1],
+    "count":3,
+    "solvable":true,
+    "execution_time_ms":0.004,
+    "steps":[]
   },
-  "dynamic_programming": {
-    "coins":             [5, 6],
-    "count":             2,
-    "solvable":          true,
-    "execution_time_ms": 0.0312,
-    "steps":             ["At amount 11: used coin 6 → backtrack to 5", "..."]
+  "dynamic_programming":{
+    "coins":[5,6],
+    "count":2,
+    "solvable":true,
+    "execution_time_ms":0.031,
+    "steps":[]
   },
-  "comparison": {
-    "greedy_is_optimal":  false,
-    "coin_difference":    1,
-    "faster_algorithm":   "greedy",
-    "explanation":        "Greedy used 3 coins but the optimal is 2 ..."
+  "comparison":{
+    "greedy_is_optimal":false,
+    "coin_difference":1,
+    "faster_algorithm":"greedy"
   },
-  "complexity": {
-    "greedy": { ... },
-    "dynamic_programming": { ... }
+  "complexity":{
+    "greedy":{},
+    "dynamic_programming":{}
   }
 }
 ```
+
+---
+
+# Running the Application
+
+Start the Flask development server.
+
+```bash
+python app.py
+```
+
+The application will be available at:
+
+```text
+http://127.0.0.1:5000
+```
+
+Open the URL in your browser to launch the **Algorithm Simulator**.
+
+Use the navigation bar at the top of the application to switch between the available modules.
+
+The simulator currently supports:
+
+- Coin Change
+- 0/1 Knapsack
+- Fractional Knapsack
+- Activity Selection
+- Rod Cutting
+
+Each module provides:
+
+- Interactive algorithm visualization
+- Step-by-step execution tracing
+- Dynamic Programming table visualization (where applicable)
+- Greedy decision visualization (where applicable)
+- Solution reconstruction
+- Performance benchmarking
+- Complexity analysis
+- Educational insights
+- Preset examples and input validation
+
+---
+
+## Future Enhancements
+
+Potential future improvements include:
+
+- Graph Algorithms (Dijkstra, BFS, DFS)
+- Sorting Algorithm Visualizations
+- Backtracking Algorithms (N-Queens)
+- Export Results as PDF/JSON
+- Algorithm Comparison Dashboard
+- Light/Dark Theme Toggle
+- User Progress Tracking
+- Interactive Pseudocode Visualization
+
+---
+
+## License
+
+This project was developed for educational purposes to demonstrate algorithm visualization, software architecture, REST API design, and interactive learning using Python, Flask, and Vanilla JavaScript.
